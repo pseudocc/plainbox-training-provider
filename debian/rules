@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+DEBNAME := $(shell dpkg-parsechangelog -S Source)
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+	python3 manage.py clean
+
+override_dh_auto_build:
+	python3 manage.py build
+
+override_dh_auto_test:
+	python3 manage.py validate
+	python3 manage.py test
+
+override_dh_auto_install:
+	python3 manage.py install --prefix=/usr --layout=unix \
+	--root=$(CURDIR)/debian/$(DEBNAME)
+
+override_dh_gencontrol:
+	python3 manage.py packaging
+	dh_gencontrol

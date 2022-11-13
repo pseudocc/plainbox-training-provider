@@ -1,0 +1,58 @@
+id: hello-checkbox
+category_id: nonsense
+_summary: print a greeting string to stdio.
+_purpose:
+  this test does not actually testing anything.
+flags: simple
+plugin: shell
+estimated_duration: 0.01
+command:
+  echo "Hi checkbox, it's $USER here."
+after:
+  hack
+
+id: hack
+flags: simple
+plugin: shell
+command:
+  echo "Happy hacking!"
+
+id: quote
+flags: simple
+plugin: shell
+command: quotez 10
+
+id: bye-checkbox
+category_id: nonsense
+_summary: print a goodbye string to stdio.
+_purpose:
+  this test does not actually testing anything either.
+flags: simple
+plugin: shell
+estimated_duration: 0.01
+depends:
+# need to say hello before goodbye.
+  hello-checkbox
+command: goodbye.py
+
+unit: category
+id: nonsense
+_name: Do nothing tests
+
+unit: test plan
+id: apple
+_name: training test plan - apple
+include:
+  hello-checkbox
+  bye-checkbox
+
+unit: test plan
+id: banana
+_name: training test plan - banana
+include:
+  quote
+
+unit: packaging meta-data
+os-id: ubuntu
+Depends:
+  quotez

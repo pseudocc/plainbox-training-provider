@@ -1,0 +1,45 @@
+unit: manifest entry
+id: has_cherry
+_name: possess at least one "cherry"
+value-type: bool
+_prompt: do we have some cherries?:
+
+unit: manifest entry
+id: has_coconut
+_name: possess at least one "coconut"
+value-type: bool
+_prompt: we must have some coconuts, won't we?:
+
+unit: job
+id: eat_fruit
+_name: eat some cherries or coconuts
+plugin: shell
+imports: from com.canonical.plainbox import manifest
+requires:
+  manifest.has_cherry == 'True' or manifest.has_coconut == 'True'
+command:
+  echo "Yummy!"
+
+unit: job
+id: fruits
+plugin: resource
+command:
+  echo "cherry: few"
+  echo "coconut: many"
+
+unit: job
+id: buyin_cherry
+_name: buy in some cherries
+plugin: shell
+imports: from com.canonical.plainbox import manifest
+requires:
+  manifest.has_cherry == 'False' or (manifest.has_cherry == 'True' and fruits.cherry == 'few')
+command:
+  echo "bought some cherries! everyone loves cherries!"
+
+unit: test plan
+id: coconut
+_name: training test plan - coconut
+include:
+  com.canonical.plainbox::collect-manifest
+  eat_fruit

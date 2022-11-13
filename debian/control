@@ -1,0 +1,17 @@
+Source: pseudoc-provider-training
+Section: utils
+Priority: optional
+Maintainer: Atlas Yu <atlas.yu@canonical.com>
+Standards-Version: 4.6.0
+Build-Depends:
+  debhelper-compat (= 13),
+  python3-checkbox-ng,
+  python3,
+  flake8,
+  shellcheck
+
+Package: pseudoc-provider-training
+Architecture: all
+Depends: python3 (>= 3.7), ${plainbox:Depends}
+X-Plainbox-Provider: yes
+Description: new starter training, nonsense debian package.

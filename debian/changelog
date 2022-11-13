@@ -1,0 +1,17 @@
+pseudoc-provider-training (0.1.2) jammy; urgency=medium
+
+  * Fix dependencies.
+
+ -- Atlas Yu <atlas.yu@canonical.com>  Tue, 01 Nov 2022 16:18:07 +0800
+
+pseudoc-provider-training (0.1.1) jammy; urgency=medium
+
+  * add test plan: banana
+
+ -- Atlas Yu <atlas.yu@canonical.com>  Tue, 01 Nov 2022 15:39:19 +0800
+
+pseudoc-provider-training (0.1.0) jammy; urgency=medium
+
+  * Initial release.
+
+ -- Atlas Yu <atlas.yu@canonical.com>  Tue, 01 Nov 2022 14:06:30 +0800
