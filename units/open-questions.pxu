@@ -1,0 +1,25 @@
+unit: manifest entry
+id: has_gun
+_name: possessing a gun or not.
+value-type: bool
+
+unit: job
+id: clip
+plugin: resource
+command:
+  echo "ammo: 1"
+
+unit: job
+id: load_gun
+_name: load the gun when ammo are running low.
+plugin: shell
+imports: from com.canonical.plainbox import manifest
+requires:
+  manifest.has_gun == 'True' and int(clip.ammo) < 5
+
+unit: test plan
+id: shooting
+_name: shooting tests
+include:
+  com.canonical.plainbox::collect-manifest
+  load_gun
